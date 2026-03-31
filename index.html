@@ -1,16 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>mycargame</title>
-    <link rel="stylesheet"
-href="https://pyscript.net/latest/pyscript.css" />
-    <script defer
-src="https://pyscript.net/latest/pyscript.js"></script>
+    <title>Car Game</title>
 </head>
-<body>
+<body style="text-align:center;">
     <h1>My Car Game</h1>
-    <py-script src="game.py"></py-script>
-</body>
+    <canvas id="gamecanvas" width="300"
+height="500" style="border: 1px solid
+black;"></canvas>
+
+    <script>
+        let canvas = 
+document.getElementById("gamecanvas")
+        let ctx = canvas.getcontext("2d");
+
+        let carX = 130;
+
+document.addEventListener("keydown",
+
+function(e){
+            if (e.key === "ArrowLeft") carX
+-= 20;
+            if (e.key === "ArrowRight")
+carX += 20;
+          });
+
+          function drawCar() {
+            ctx.fillstyle = "red";
+            ctx.fillRect(carX, 400, 40,
+80);
+
+          }
+          function gameLoop() {
+            ctx.clearRect(0, 0,
+canvas.width, canvas.height);
+            drawCar();
+requestAnimationFrame(gameLoop);
+          }
+
+          gameLoop();
+      </script>
+    </body>
 </html>
